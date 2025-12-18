@@ -37,9 +37,15 @@ const AmbientBackground = () => (
 );
 
 // Fade In Component
-const FadeIn = ({ children, delay = 0, className = '' }) => {
+type FadeInProps = {
+    children: React.ReactNode;
+    delay?: number;
+    className?: string;
+};
+
+const FadeIn = ({ children, delay = 0, className = '' }: FadeInProps) => {
     const [isVisible, setIsVisible] = useState(false);
-    const ref = useRef(null);
+    const ref = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
