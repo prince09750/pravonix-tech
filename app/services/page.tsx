@@ -49,7 +49,7 @@ const AmbientBackground = () => (
 );
 
 // Fade In Component
-const FadeIn = ({ children, delay = 0, className = '' }) => {
+const FadeIn = ({ children, delay = 0, className = '' }: { children: React.ReactNode; delay?: number; className?: string }) => {
     const [isVisible, setIsVisible] = useState(false);
     const ref = useRef(null);
 
