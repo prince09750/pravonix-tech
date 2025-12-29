@@ -66,7 +66,7 @@ const projects = [
             title: "CTO, FinFlow Global"
         },
         icon: ShieldCheck,
-        image: 'https://images.unsplash.com/photo-1621932616428-c1f0b0949d0d?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', // Placeholder image for FinTech
+        image: 'https://images.unsplash.com/photo-1621932616428-c1f0b0949d0d?w=800&q=80', // Placeholder image for FinTech
     },
     {
         name: "EcoCharge Network",
@@ -85,7 +85,7 @@ const projects = [
             title: "CEO, EcoCharge Network"
         },
         icon: Zap,
-        image: 'https://images.unsplash.com/photo-1627993079089-a2a2c3d5e9b8?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', // Placeholder image for EV
+        image: 'https://images.unsplash.com/photo-1627993079089-a2a2c3d5e9b8?w=800&q=80', // Placeholder image for EV
     },
     {
         name: "MediTrack AI",
@@ -104,7 +104,7 @@ const projects = [
             title: "Chief Radiologist, St. Jude's Hospital"
         },
         icon: BarChart2,
-        image: 'https://images.unsplash.com/photo-1579684385153-f00e99f12b84?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D', // Placeholder image for Medical AI
+        image: 'https://images.unsplash.com/photo-1579684385153-f00e99f12b84?w=800&q=80', // Placeholder image for Medical AI
     }
 ];
 
@@ -184,8 +184,18 @@ export default function ClientsPage() {
                         <div className={`max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center ${idx % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
                             {/* Project Image */}
                             <FadeIn delay={100} className={idx % 2 === 1 ? 'order-2' : 'order-1'}>
-                                <div className="rounded-3xl overflow-hidden shadow-2xl hover:shadow-amber-500/20 transition-all duration-500 transform hover:scale-[1.01] group">
-                                    <img src={project.image} alt={project.name} className="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out" />
+                                <div className="rounded-3xl overflow-hidden shadow-2xl hover:shadow-amber-500/20 transition-all duration-500 transform hover:scale-[1.01] group relative bg-stone-200">
+                                    <img 
+                                        src={project.image} 
+                                        alt={project.name} 
+                                        className="w-full h-[400px] md:h-[500px] lg:h-[600px] object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out" 
+                                        loading="lazy"
+                                        onError={(e) => {
+                                            console.error('Image failed to load:', project.image);
+                                            e.currentTarget.style.display = 'none';
+                                        }}
+                                        onLoad={() => console.log('Image loaded:', project.name)}
+                                    />
                                 </div>
                             </FadeIn>
 
