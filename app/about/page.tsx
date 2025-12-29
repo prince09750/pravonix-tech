@@ -37,9 +37,15 @@ const AmbientBackground = () => (
 );
 
 // Fade In Component
-const FadeIn = ({ children, delay = 0, className = '' }) => {
+type FadeInProps = {
+    children: React.ReactNode;
+    delay?: number;
+    className?: string;
+};
+
+const FadeIn = ({ children, delay = 0, className = '' }: FadeInProps) => {
     const [isVisible, setIsVisible] = useState(false);
-    const ref = useRef(null);
+    const ref = useRef<HTMLDivElement | null>(null);
 
     useEffect(() => {
         const observer = new IntersectionObserver(
@@ -369,8 +375,27 @@ export default function AboutPage() {
                                         className="px-8 py-4 sm:px-12 sm:py-5 md:px-16 md:py-6 glass-card rounded-full font-bold text-base sm:text-lg md:text-xl hover:bg-white transition-all duration-300 text-stone-900 text-center"
                                     >
                                         View Our Work
+
                                     </Link>
+                    <Link
+  href="/about/team"
+  className="
+    inline-flex items-center justify-center gap-2
+    px-6 py-3 sm:px-8 sm:py-3 md:px-10 md:py-4
+    bg-amber-600 text-white
+    rounded-full font-bold
+    text-base sm:text-lg
+    hover:bg-amber-700
+    transition-all duration-300
+    shadow-xl
+  "
+>
+  Meet Our Team
+</Link>
+
+
                                 </div>
+
                             </div>
                         </div>
                     </FadeIn>
