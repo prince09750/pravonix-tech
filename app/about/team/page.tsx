@@ -16,10 +16,10 @@ const headMembers = [
 
 const teamMembers = [
   {
-    name: "Amit Sharma",
-    role: "Frontend Developer",
+    name: "Aditi Gupta",
+    role: "Managing Director",
     image:
-      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300",
+      "https://media.licdn.com/dms/image/v2/D5603AQEddtucQObPWA/profile-displayphoto-shrink_800_800/B56ZXwDnxAGoAc-/0/1743489237726?e=1769644800&v=beta&t=dYYYZdjbzJBvtfY254Sh510BFi1SNrNyE-H3aitqhAk",
   },
   {
     name: "Neha Verma",
