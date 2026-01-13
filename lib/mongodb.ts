@@ -11,8 +11,9 @@ declare global {
 
 const MONGODB_URI = process.env.MONGODB_URI as string;
 
+// Make MONGODB_URI optional - API routes will handle gracefully
 if (!MONGODB_URI) {
-  throw new Error("❌ Please add MONGODB_URI to .env.local");
+  console.warn("⚠️ MONGODB_URI not found in environment variables. Database features will be disabled.");
 }
 
 // Initialize global cache in a type-safe way
@@ -22,6 +23,11 @@ if (!global.mongoose) {
 
 // --- Main Connection Function ---
 export const connectDB = async () => {
+  // Check if MONGODB_URI is available
+  if (!MONGODB_URI) {
+    throw new Error("MONGODB_URI is not configured. Please add it to your environment variables.");
+  }
+
   // If connection is already cached, return it
   if (global.mongoose.conn) {
     console.log("☑️ Using existing MongoDB connection");
@@ -36,6 +42,8 @@ export const connectDB = async () => {
   // If no connection exists, create a new connection promise
   const opts = {
     bufferCommands: false, // Recommended for serverless environments
+    serverSelectionTimeoutMS: 5000, // Timeout after 5 seconds
+    socketTimeoutMS: 45000, // Close sockets after 45 seconds of inactivity
   };
 
   global.mongoose.promise = mongoose

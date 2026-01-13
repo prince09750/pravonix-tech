@@ -21,9 +21,18 @@ const NOTIFICATION_EMAIL = "sharmaprince7248@gmail.com";
 
 export async function POST(req: NextRequest) {
     let savedData = null; 
+    let dbConnected = false;
 
     try {
-        await connectDB();
+        // Try to connect to database, but don't fail if it doesn't work
+        try {
+            await connectDB();
+            dbConnected = true;
+            console.log("✅ Database connected successfully");
+        } catch (dbConnectionError: any) {
+            console.error("⚠️ Database connection failed (continuing without DB):", dbConnectionError.message);
+            // Continue without database - we'll still send the email
+        }
 
         const { name, email, phone, subject, message } = await req.json();
 
@@ -43,18 +52,23 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ message: "Invalid phone number format." }, { status: 400 });
         }
 
-        // 2. --- Save to Database ---
-        try {
-            savedData = await Contact.create({
-                name,
-                email,
-                phone,
-                subject,
-                message,
-            });
-            console.log("Database save successful.");
-        } catch (dbError) {
-            console.error("MongoDB Save Error:", dbError);
+        // 2. --- Save to Database (only if connected) ---
+        if (dbConnected) {
+            try {
+                savedData = await Contact.create({
+                    name,
+                    email,
+                    phone,
+                    subject,
+                    message,
+                });
+                console.log("✅ Database save successful.");
+            } catch (dbError) {
+                console.error("⚠️ MongoDB Save Error (continuing):", dbError);
+                // Continue even if save fails
+            }
+        } else {
+            console.log("⚠️ Skipping database save (not connected)");
         }
 
         // 3. --- Send Email Notification ---

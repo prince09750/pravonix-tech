@@ -156,7 +156,7 @@ export default function ClientsPage() {
                 {/* Clients List Section */}
                 <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8">
                     <div className="max-w-7xl mx-auto">
-                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+                        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
                             {clients.map((client, idx) => (
                                 <ClientCard key={idx} client={client} idx={idx} />
                             ))}
@@ -175,9 +175,22 @@ export default function ClientsPage() {
                                 Let's collaborate to build your next industry-defining product. Your success story starts here.
                              </p>
                              
-                             <Link href="/contact" className="group relative z-10 inline-flex items-center gap-4 bg-amber-500 text-stone-900 font-bold px-10 py-5 rounded-full hover:bg-amber-400 transition-all text-lg shadow-xl shadow-amber-500/30">
-                                Connect With Us <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
-                             </Link>
+                             <Link
+  href="/contact"
+  className="
+    group relative z-10 inline-flex items-center gap-2
+    bg-amber-500 text-stone-900 font-bold
+    px-5 py-3 text-sm
+    sm:px-6 sm:py-3 sm:text-base
+    md:px-10 md:py-5 md:text-lg
+    rounded-full hover:bg-amber-400
+    transition-all shadow-xl shadow-amber-500/30
+  "
+>
+  Connect With Us
+  <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 group-hover:translate-x-2 transition-transform" />
+</Link>
+
                         </div>
                     </FadeIn>
                 </section>

@@ -16,9 +16,6 @@ import {
   ChevronDown,
   UserCircle,
   GraduationCap,
-  Video,
-  Brain,
-  Layout,
   Cpu,
   Film,
   Sliders,
@@ -110,7 +107,7 @@ export default function Navbar() {
           </span>
         </Link>
 
-        {/* ================= DESKTOP MENU (Tablet & Laptop & Desktop) ================= */}
+        {/* Desktop Menu */}
         <div className="hidden md:flex items-center space-x-6 lg:space-x-10 relative">
           {navItems.map((item) => {
             if (item.children) {
@@ -127,9 +124,7 @@ export default function Navbar() {
                   <Link
                     href={item.href}
                     className={`flex items-center gap-2 text-base md:text-lg font-medium transition-all duration-300 group py-2 px-1 ${
-                      isActive
-                        ? "text-amber-700 font-semibold"
-                        : "text-stone-500 hover:text-amber-600"
+                      isActive ? "text-amber-700 font-semibold" : "text-stone-500 hover:text-amber-600"
                     }`}
                   >
                     {item.name}
@@ -159,8 +154,8 @@ export default function Navbar() {
                               href={child.href}
                               className={`block w-full px-4 py-1.5 md:px-5 md:py-2 lg:px-6 lg:py-2 text-sm md:text-base font-medium transition-all duration-300 ease-out relative group/item cursor-pointer touch-manipulation rounded-lg mx-1 ${
                                 isChildActive
-                                  ? 'bg-amber-50/80 text-amber-700 font-semibold backdrop-blur-sm'
-                                  : 'text-stone-700 hover:bg-white/60 hover:text-amber-600 active:bg-white/80 backdrop-blur-sm'
+                                  ? 'bg-amber-50/80 text-amber-700 font-semibold'
+                                  : 'text-stone-700 hover:bg-white/60 hover:text-amber-600 active:bg-white/80'
                               }`}
                             >
                               <span className="relative z-10 flex items-center gap-2 md:gap-3">
@@ -202,76 +197,66 @@ export default function Navbar() {
         <div className="md:hidden">
           <button 
             onClick={toggleMenu}
-            className="p-2 rounded-lg bg-white/20 backdrop-blur-sm border border-white/30 hover:bg-white/30 transition-all duration-300"
+            className="p-2 rounded-lg bg-stone-900 border border-stone-700 hover:bg-stone-800 transition-all duration-300"
             aria-label="Toggle menu"
           >
-            {isOpen ? <X className="w-6 h-6 text-stone-800" /> : <Menu className="w-6 h-6 text-stone-800" />}
+            {isOpen ? <X className="w-6 h-6 text-white" /> : <Menu className="w-6 h-6 text-white" />}
           </button>
         </div>
       </nav>
 
-      {/* ================= MOBILE MENU (Mobile & Small Tablets) ================= */}
+      {/* ================= MOBILE MENU ================= */}
       <div
-        className={`fixed top-16 right-0 h-[calc(90vh-4rem)] w-72 sm:w-80 bg-white/85 backdrop-blur-xl saturate-180 md:hidden transition-transform z-40 rounded-tl-2xl rounded-bl-2xl shadow-2xl overflow-y-auto border-l border-t border-b border-white/50
+        className={`fixed top-16 right-0 h-[calc(90vh-4rem)] w-72 sm:w-80 md:hidden transition-transform z-40 rounded-tl-2xl rounded-bl-2xl shadow-2xl overflow-y-auto border-l border-t border-b border-stone-700 bg-stone-900
         ${isOpen ? "translate-x-0" : "translate-x-full"}`}
-        style={{
-          backdropFilter: 'blur(20px) saturate(180%)',
-          WebkitBackdropFilter: 'blur(20px) saturate(180%)',
-          boxShadow: '0 20px 60px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.5) inset',
-        }}
       >
         <div className="p-4 sm:p-5 space-y-2">
           {navItems.map((item) => {
             const Icon = item.icon;
+            const isParentActive = pathname.startsWith(item.href);
 
             if (item.children) {
               const isDropdownOpen = openDropdownsMobile[item.name] || false;
-              const isParentActive = pathname.startsWith(item.href);
-              
+
               return (
-                <div key={item.name} className="rounded-xl overflow-hidden">
+                <div key={item.name} className="rounded-xl overflow-hidden relative">
+                  {/* Parent */}
                   <button
                     onClick={() => setOpenDropdownsMobile({ ...openDropdownsMobile, [item.name]: !isDropdownOpen })}
-                    className={`flex items-center gap-3 w-full px-4 py-3.5 sm:px-5 sm:py-4 text-stone-800 transition-all duration-200 rounded-xl hover:bg-white/60 active:bg-white/80 touch-manipulation backdrop-blur-sm ${
-                      isParentActive ? 'bg-white/50 font-semibold' : ''
+                    className={`flex items-center gap-3 w-full px-4 py-3.5 sm:px-5 sm:py-4 text-white transition-all duration-200 rounded-xl hover:bg-stone-800 active:bg-stone-700 relative ${
+                      isParentActive ? 'bg-stone-800 font-semibold' : ''
                     }`}
                     aria-expanded={isDropdownOpen}
                     aria-haspopup="true"
                   >
-                    <Icon className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" />
+                    {isParentActive && <div className="absolute left-0 top-0 bottom-0 w-1 bg-amber-400 rounded-r"></div>}
+                    <Icon className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0 text-white" />
                     <span className="font-medium text-base sm:text-lg">{item.name}</span>
                     <ChevronDown className={`w-4 h-4 sm:w-5 sm:h-5 ml-auto transition-transform duration-300 flex-shrink-0 ${isDropdownOpen ? 'rotate-180' : ''}`} />
                   </button>
 
-                  <div className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                    isDropdownOpen ? 'max-h-80 sm:max-h-96 opacity-100' : 'max-h-0 opacity-0'
-                  }`}>
+                  {/* Children */}
+                  <div className={`overflow-hidden transition-all duration-300 ease-in-out ${isDropdownOpen ? 'max-h-80 sm:max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
                     {item.children.map((child, index) => {
                       const isChildActive = pathname === child.href || (child.href.includes('#') && pathname.startsWith(item.href));
                       const ChildIcon = child.icon;
                       const isLast = index === item.children.length - 1;
                       return (
-                        <div key={child.name}>
+                        <div key={child.name} className="relative">
                           <Link
                             href={child.href}
                             onClick={toggleMenu}
-                            className={`flex items-center gap-3 ml-10 sm:ml-12 px-4 py-3.5 sm:px-5 sm:py-4 text-stone-700 hover:text-stone-900 transition-all duration-500 ease-out relative cursor-pointer active:bg-white/60 touch-manipulation min-h-[48px] group backdrop-blur-sm rounded-lg ${
-                              isChildActive ? 'text-amber-600 font-semibold bg-white/50' : 'hover:bg-white/40'
+                            className={`flex items-center gap-3 ml-10 sm:ml-12 px-4 py-3.5 sm:px-5 sm:py-4 text-gray-300 hover:text-white transition-all duration-500 ease-out relative cursor-pointer rounded-lg ${
+                              isChildActive ? 'text-amber-400 font-semibold bg-stone-800' : ''
                             }`}
                           >
+                            {isChildActive && <div className="absolute left-0 top-0 bottom-0 w-1 bg-amber-400 rounded-r"></div>}
                             {ChildIcon && (
-                              <ChildIcon className={`w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 transition-all duration-500 ease-out ${
-                                isChildActive ? 'text-amber-600' : 'text-stone-500 group-hover:text-amber-600 group-hover:scale-110'
-                              }`} />
+                              <ChildIcon className={`w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0 ${isChildActive ? 'text-amber-400' : 'text-gray-500 group-hover:text-amber-400 group-hover:scale-110'}`} />
                             )}
-                            <span className="flex-1 text-base sm:text-lg transition-all duration-300 ease-out group-hover:translate-x-1">{child.name}</span>
-                            {isChildActive && (
-                              <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-amber-500 to-amber-600 rounded-r"></div>
-                            )}
+                            <span className="flex-1 text-base sm:text-lg">{child.name}</span>
                           </Link>
-                          {!isLast && (
-                            <div className="ml-10 sm:ml-12 mr-4 border-b border-stone-200/50"></div>
-                          )}
+                          {!isLast && <div className="ml-10 sm:ml-12 mr-4 border-b border-stone-700"></div>}
                         </div>
                       );
                     })}
@@ -280,17 +265,19 @@ export default function Navbar() {
               );
             }
 
+            // Parent without children
             const isActive = pathname === item.href;
             return (
               <Link
                 key={item.name}
                 href={item.href}
                 onClick={toggleMenu}
-                className={`flex items-center gap-3 px-4 py-3.5 sm:px-5 sm:py-4 text-stone-800 hover:bg-white/60 active:bg-white/80 rounded-xl transition-all duration-200 touch-manipulation min-h-[48px] backdrop-blur-sm ${
-                  isActive ? 'bg-white/50 font-semibold text-amber-600' : ''
+                className={`flex items-center gap-3 px-4 py-3.5 sm:px-5 sm:py-4 text-white hover:text-gray-200 active:bg-stone-700 rounded-xl transition-all duration-200 relative ${
+                  isActive ? 'bg-stone-800 font-semibold text-amber-400' : ''
                 }`}
               >
-                <Icon className={`w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0 ${isActive ? 'text-amber-600' : 'text-stone-600'}`} />
+                {isActive && <div className="absolute left-0 top-0 bottom-0 w-1 bg-amber-400 rounded-r"></div>}
+                <Icon className={`w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0 ${isActive ? 'text-amber-400' : 'text-gray-300'}`} />
                 <span className="text-base sm:text-lg font-medium">{item.name}</span>
               </Link>
             );

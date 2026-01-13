@@ -1,15 +1,16 @@
 "use client";
 
-import React from 'react';
-import Footer from '../../components/footer';
+import React from "react";
+import Footer from "../../components/footer";
 
-// ================= 1. DATA (Sirf Image Address Daalein) =================
+/* ================= 1. DATA ================= */
+
 const headMembers = [
   {
     name: "Prince Sharma",
     role: "CEO & Managing Director",
-    // Yahan kisi bhi website ka "Copy Image Address" paste karein
-    image: "https://clinginfotech.com/_next/image?url=%2Fassests%2FTeam%2FTeam40.png&w=640&q=75", 
+    image:
+      "https://clinginfotech.com/_next/image?url=%2Fassests%2FTeam%2FTeam40.png&w=640&q=75",
   },
 ];
 
@@ -17,63 +18,74 @@ const teamMembers = [
   {
     name: "Amit Sharma",
     role: "Frontend Developer",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300",
+    image:
+      "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=300",
   },
   {
     name: "Neha Verma",
     role: "UI/UX Designer",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=300",
+    image:
+      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=300",
   },
   {
     name: "Rahul Singh",
     role: "Backend Developer",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300",
+    image:
+      "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=300",
   },
   {
-    name: "ronnie kelvin",
+    name: "Ronnie Kelvin",
     role: "Backend Developer",
-    image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=300",
+    image:
+      "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=300",
   },
   {
     name: "Mahish Kumar",
     role: "Backend Developer",
-    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=300",
+    image:
+      "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=300",
   },
   {
-    name: "sushant singh",
+    name: "Sushant Singh",
     role: "Backend Developer",
-    image: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=300",
+    image:
+      "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=300",
   },
 ];
 
-// ================= 2. UI COMPONENT =================
+/* ================= 2. PAGE ================= */
+
 export default function TeamPage() {
-  
-  // Image na load hone par placeholder dikhane ke liye
-  const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+  const handleImageError = (
+    e: React.SyntheticEvent<HTMLImageElement, Event>
+  ) => {
     const target = e.target as HTMLImageElement;
     target.src = "https://via.placeholder.com/300?text=User+Photo";
   };
 
   return (
     <>
-      <section className="min-h-screen bg-[#FDFCF8] pt-32 pb-24 px-6">
-
-        {/* HEADER */}
+      <section className="bg-[#FDFCF8] pt-28 pb-24 px-4">
+        {/* ================= HEADER ================= */}
         <div className="max-w-7xl mx-auto text-center mb-20">
           <h1 className="text-4xl md:text-5xl font-bold text-stone-800">
-           Meet Our 
- <span className="text-amber-600"> Amazing Team</span>
+            Meet Our <span className="text-amber-600">Amazing Team</span>
           </h1>
+          <p className="mt-4 text-stone-500 max-w-2xl mx-auto">
+            A passionate team of professionals dedicated to innovation,
+            excellence, and growth.
+          </p>
         </div>
 
-        {/* CEO SECTION */}
-        <div className="max-w-7xl mx-auto mb-24">
+        {/* ================= CEO SECTION ================= */}
+        <div className="max-w-5xl mx-auto mb-28">
           {headMembers.map((member, index) => (
-            <div key={index} className="bg-white rounded-3xl shadow-xl border border-stone-200 p-10 md:p-16 flex flex-col md:flex-row items-center gap-12">
-              
-              {/* Image (No Link) */}
-              <div className="w-56 h-56 rounded-full overflow-hidden border-4 border-amber-500 shadow-lg flex-shrink-0">
+            <div
+              key={index}
+              className="bg-white rounded-3xl p-8 md:p-14 flex flex-col md:flex-row items-center gap-10 shadow-2xl"
+            >
+              {/* Image */}
+              <div className="w-40 h-40 md:w-52 md:h-52 rounded-full overflow-hidden border-4 border-white flex-shrink-0">
                 <img
                   src={member.image}
                   alt={member.name}
@@ -82,29 +94,37 @@ export default function TeamPage() {
                 />
               </div>
 
-              <div className="text-center md:text-left">
-                <h2 className="text-4xl font-bold text-stone-800">{member.name}</h2>
-                <p className="text-amber-600 font-semibold text-xl mt-2">{member.role}</p>
-                <p className="mt-4 text-stone-600 text-lg max-w-2xl leading-relaxed">
-                 Meet our CEO and Managing Director, a visionary leader fueled by a passion for technology and a proven history of catalyzing growth and triumph. Guided by strategic foresight and an active involvement, they inspire themselves to surpass expectations and reach new heights of achievement.
+              {/* Content */}
+              <div className="text-center md:text-left text-black">
+                <h2 className="text-3xl md:text-4xl font-bold">{member.name}</h2>
+                <p className="text-lg font-medium opacity-90 mt-1">{member.role}</p>
+
+                <p className="mt-4 text-sm md:text-base leading-relaxed opacity-95 max-w-2xl">
+                  Meet our CEO and Managing Director, a visionary leader driven
+                  by passion for technology and a strong history of building
+                  successful digital solutions. With strategic insight and
+                  hands-on leadership, they inspire teams to exceed expectations
+                  and reach new milestones.
                 </p>
               </div>
             </div>
           ))}
         </div>
 
-        {/* TEAM GRID */}
+        {/* ================= TEAM GRID ================= */}
         <div className="max-w-7xl mx-auto">
           <h3 className="text-3xl font-bold text-stone-800 text-center mb-14">
-            Our Amazing Team
+            Our Team Members
           </h3>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-12">
+          <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
             {teamMembers.map((member, index) => (
-              <div key={index} className="bg-white rounded-2xl shadow-lg border border-stone-200 p-8 text-center transition-all">
-                
-                {/* Avatar (No Link) */}
-                <div className="w-32 h-32 mx-auto rounded-full overflow-hidden border-2 border-amber-300 mb-6">
+              <div
+                key={index}
+                className="bg-white rounded-2xl border border-stone-200 shadow-md hover:shadow-xl transition-all p-6 text-center"
+              >
+                {/* Avatar */}
+                <div className="w-24 h-24 mx-auto rounded-full overflow-hidden bg-red-600 mb-4">
                   <img
                     src={member.image}
                     alt={member.name}
@@ -113,8 +133,11 @@ export default function TeamPage() {
                   />
                 </div>
 
-                <h4 className="text-xl font-semibold text-stone-800">{member.name}</h4>
-                <p className="text-stone-500 mt-1">{member.role}</p>
+                {/* Name */}
+                <h4 className="text-sm font-semibold text-amber-600">{member.name}</h4>
+
+                {/* Role */}
+                <p className="text-xs text-stone-500 mt-1">{member.role}</p>
               </div>
             ))}
           </div>
