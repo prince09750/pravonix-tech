@@ -5,9 +5,9 @@ import { useEffect, useRef, useState } from 'react';
 import { 
     Code, Zap, Database, TrendingUp, Users, ArrowRight, 
     Laptop, Handshake, ShieldCheck, Sparkles, CheckCircle, 
-    Award, Rocket, Globe, Shield, ChevronRight, Cpu, Layers,
-    Twitter, Linkedin, Github, Instagram, Mail, MapPin, Phone
+    Award, Rocket, Globe, Shield, ChevronRight, Cpu, Layers
 } from 'lucide-react';
+import Footer from './components/footer';
 
 // --- IMAGES ---
 const HERO_BG = "https://images.unsplash.com/photo-1639322537228-f710d846310a?w=1920&q=80";
@@ -17,36 +17,112 @@ const PROCESS_BG = "https://images.unsplash.com/photo-1451187580459-43490279c0fa
 // --- DATA ---
 const coreServices = [
     { 
-        title: 'Enterprise Software Engineering', 
-        description: 'Bespoke digital ecosystems engineered for high-complexity business logic. We build scalable SaaS platforms that drive operational dominance.', 
-        icon: Laptop,
+        title: 'Career Counselling', 
+        description: 'We encourage you to take full advantage of the services we provide to support your career development process.', 
+        icon: Users,
         bg: 'bg-amber-50',
         accent: 'text-amber-600',
-        border: 'border-amber-100'
+        border: 'border-amber-100',
+        href: '/about/career'
     },
     { 
-        title: 'Cloud Architecture & DevOps', 
-        description: 'Next-generation cloud infrastructure (AWS/Azure). We optimize for zero-downtime scalability, security compliance, and cost-efficiency.', 
+        title: 'App Development', 
+        description: 'Need custom app development services? We can help you to take advantage of the rapidly growing segment of mobile application development.', 
+        icon: Laptop,
+        bg: 'bg-blue-50',
+        accent: 'text-blue-600',
+        border: 'border-blue-100',
+        href: '/services/app-development'
+    },
+    { 
+        title: 'Custom Development', 
+        description: 'Don\'t let your website be just another URL on the web! We never use a pre-designed template for your website. All design layouts are developed from ground up.', 
+        icon: Code,
+        bg: 'bg-purple-50',
+        accent: 'text-purple-600',
+        border: 'border-purple-100',
+        href: '/services/custom-development'
+    },
+    { 
+        title: 'IT Team for Entrepreneurship', 
+        description: 'Entrepreneurship is exciting and challenging, yet risky. The PravonixTech Team. It certainly helps to have strong technology skills and expertise in key areas.', 
+        icon: Rocket,
+        bg: 'bg-green-50',
+        accent: 'text-green-600',
+        border: 'border-green-100',
+        href: '/services/it-entrepreneurship'
+    },
+    { 
+        title: 'ERPs', 
+        description: 'We help you to manage your business activities by integrating your back and front office applications.', 
         icon: Database,
-        bg: 'bg-stone-100',
-        accent: 'text-stone-600',
-        border: 'border-stone-200'
+        bg: 'bg-red-50',
+        accent: 'text-red-600',
+        border: 'border-red-100',
+        href: '/services/erps'
     },
     { 
-        title: 'Cognitive AI & Machine Learning', 
-        description: 'Unlock the power of data. We integrate predictive analytics, LLMs, and automation pipelines to future-proof your decision-making.', 
-        icon: Cpu,
-        bg: 'bg-orange-50',
-        accent: 'text-orange-600',
-        border: 'border-orange-100'
+        title: 'Website Designing', 
+        description: 'In this digital world no matter how small your business, whether you have local business or profession, a website can make your business to the highest peak.', 
+        icon: Globe,
+        bg: 'bg-indigo-50',
+        accent: 'text-indigo-600',
+        border: 'border-indigo-100',
+        href: '/services/website-designing'
     },
     { 
-        title: 'Cybersecurity & Compliance', 
-        description: 'Bank-grade security protocols. We implement rigorous penetration testing and encryption to protect your digital assets.', 
-        icon: ShieldCheck,
+        title: 'Digital Marketing', 
+        description: 'Nowadays digital marketing is one of the popular ways to boost or promote brands & products through the internet and other digital channels.', 
+        icon: TrendingUp,
+        bg: 'bg-pink-50',
+        accent: 'text-pink-600',
+        border: 'border-pink-100',
+        href: '/services/digital-marketing'
+    },
+    { 
+        title: 'Social Media Marketing', 
+        description: 'More than 3 billion people are connected through social platforms so it is important to reach out to our consumers who are on social platforms.', 
+        icon: Users,
+        bg: 'bg-cyan-50',
+        accent: 'text-cyan-600',
+        border: 'border-cyan-100',
+        href: '/services/social-media-marketing'
+    },
+    { 
+        title: 'SEO & Google Ads', 
+        description: 'SEO(Search Engine Optimization) is one of the important factors in your business website. SEO will help you to reach to your targeted customers.', 
+        icon: Zap,
         bg: 'bg-yellow-50',
         accent: 'text-yellow-600',
-        border: 'border-yellow-100'
+        border: 'border-yellow-100',
+        href: '/services/seo-google-ads'
+    },
+    { 
+        title: 'Political Campaign', 
+        description: 'Our political campaign management services include development of political campaign strategies, powerful political campaign slogans and winning ideas.', 
+        icon: Award,
+        bg: 'bg-orange-50',
+        accent: 'text-orange-600',
+        border: 'border-orange-100',
+        href: '/services/political-campaign'
+    },
+    { 
+        title: '3D Animations', 
+        description: 'Our 3D animation services bring imagination to life. From conceptualization to execution, we craft stunning visuals that captivate audiences.', 
+        icon: Sparkles,
+        bg: 'bg-violet-50',
+        accent: 'text-violet-600',
+        border: 'border-violet-100',
+        href: '/services/3d-videos'
+    },
+    { 
+        title: 'AI/ML', 
+        description: 'We craft intelligent systems that adapt, learn, and evolve. Harnessing the power of Natural Language Processing (NLP) for deeper understanding.', 
+        icon: Cpu,
+        bg: 'bg-teal-50',
+        accent: 'text-teal-600',
+        border: 'border-teal-100',
+        href: '/services/ai-ml'
     },
 ];
 
@@ -84,70 +160,6 @@ const stats = [
 ];
 
 // --- INTERNAL COMPONENTS ---
-
-// 1. FOOTER COMPONENT
-const Footer = () => (
-    <footer className="bg-[#1C1917] text-stone-400 pt-20 pb-10 border-t border-stone-800 font-sans relative overflow-hidden">
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-4xl bg-amber-500/5 blur-[120px] rounded-full pointer-events-none" />
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-            {/* Newsletter */}
-            <div className="bg-stone-800/50 border border-stone-700 rounded-[2rem] p-8 md:p-12 mb-16 flex flex-col md:flex-row items-center justify-between gap-8 shadow-2xl">
-                <div className="max-w-md text-center md:text-left">
-                    <h3 className="text-2xl font-bold text-white mb-2">Subscribe to our insights</h3>
-                    <p className="text-stone-400">Join 5,000+ executives receiving weekly updates.</p>
-                </div>
-                <div className="flex w-full md:w-auto gap-3 flex-col sm:flex-row">
-                    <input type="email" placeholder="Enter your email" className="bg-stone-900 border border-stone-700 text-white px-6 py-4 rounded-full focus:outline-none focus:border-amber-500 w-full md:w-72" />
-                    <button className="bg-amber-600 hover:bg-amber-500 text-white px-8 py-4 rounded-full font-bold transition-all shadow-lg">Subscribe</button>
-                </div>
-            </div>
-
-            {/* Links Grid */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 md:gap-12 mb-12 sm:mb-16 border-b border-stone-800 pb-12 sm:pb-16">
-                <div className="space-y-4 sm:space-y-6">
-                    <span className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
-                        <Code className="text-amber-600 w-5 h-5 sm:w-6 sm:h-6" /> Pravonix<span className="text-amber-500">Tech</span>
-                    </span>
-                    <p className="text-stone-500 leading-relaxed text-xs sm:text-sm">Premier software consultancy delivering enterprise-grade digital transformation.</p>
-                    <div className="flex gap-3 sm:gap-4">
-                        {[Linkedin, Twitter, Github, Instagram].map((Icon, i) => (
-                            <a key={i} href="#" className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-stone-800 flex items-center justify-center text-stone-400 hover:bg-amber-600 hover:text-white transition-all"><Icon size={16} className="sm:w-[18px] sm:h-[18px]" /></a>
-                        ))}
-                    </div>
-                </div>
-                <div>
-                    <h4 className="text-white font-bold mb-4 sm:mb-6 text-base sm:text-lg">Services</h4>
-                    <ul className="space-y-3 sm:space-y-4 text-xs sm:text-sm font-medium">
-                        <li><Link href="#" className="hover:text-amber-500 transition-colors">Custom Development</Link></li>
-                        <li><Link href="#" className="hover:text-amber-500 transition-colors">Cloud Solutions</Link></li>
-                        <li><Link href="#" className="hover:text-amber-500 transition-colors">AI Integration</Link></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 className="text-white font-bold mb-4 sm:mb-6 text-base sm:text-lg">Company</h4>
-                    <ul className="space-y-3 sm:space-y-4 text-xs sm:text-sm font-medium">
-                        <li><Link href="/about" className="hover:text-amber-500 transition-colors">About Us</Link></li>
-                        <li><Link href="/careers" className="hover:text-amber-500 transition-colors">Careers</Link></li>
-                        <li><Link href="/contact" className="hover:text-amber-500 transition-colors">Contact</Link></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4 className="text-white font-bold mb-4 sm:mb-6 text-base sm:text-lg">Contact</h4>
-                    <div className="space-y-3 sm:space-y-4 text-xs sm:text-sm">
-                        <div className="flex items-start gap-2 sm:gap-3"><MapPin className="text-amber-600 shrink-0 w-4 h-4 sm:w-[18px] sm:h-[18px]" /><p>San Francisco, CA 94107</p></div>
-                        <div className="flex items-center gap-2 sm:gap-3"><Mail className="text-amber-600 shrink-0 w-4 h-4 sm:w-[18px] sm:h-[18px]" /><a href="mailto:hello@pravonixtech.com" className="hover:text-white break-all">hello@pravonixtech.com</a></div>
-                    </div>
-                </div>
-            </div>
-            <div className="flex flex-col md:flex-row justify-between items-center text-xs sm:text-sm text-stone-600 gap-3 sm:gap-4">
-                <p>© {new Date().getFullYear()} PravonixTech Inc. All rights reserved.</p>
-                <div className="flex gap-4 sm:gap-6"><a href="#" className="hover:text-amber-500">Terms</a><a href="#" className="hover:text-amber-500">Privacy</a></div>
-            </div>
-        </div>
-    </footer>
-);
-
-// 2. UTILITY COMPONENTS
 const AmbientBackground = () => (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
         <div className="absolute inset-0 bg-[#FDFCF8]" />
@@ -186,32 +198,14 @@ const FadeIn = ({ children, delay = 0, className = '' }: FadeInProps) => {
 
 // --- MAIN PAGE COMPONENT ---
 export default function HomePage() {
-    const [offsetY, setOffsetY] = useState(0);
-
-    useEffect(() => {
-        const handleScroll = () => setOffsetY(window.scrollY);
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
 
     return (
+        <>
         <div className="min-h-screen text-stone-800 overflow-hidden font-sans selection:bg-amber-200 selection:text-amber-900">
             <style jsx global>{`
                 @keyframes float {
                     0%, 100% { transform: translateY(0); }
                     50% { transform: translateY(-20px); }
-                }
-                .glass-card {
-                    background: rgba(255, 255, 255, 0.6);
-                    backdrop-filter: blur(20px);
-                    border: 1px solid rgba(255, 255, 255, 0.8);
-                    box-shadow: 0 10px 40px -10px rgba(217, 119, 6, 0.05);
-                }
-                .glass-card:hover {
-                    background: rgba(255, 255, 255, 0.9);
-                    border: 1px solid rgba(251, 191, 36, 0.3);
-                    transform: translateY(-5px);
-                    box-shadow: 0 20px 40px -10px rgba(217, 119, 6, 0.1);
                 }
                 .text-gradient-gold {
                     background: linear-gradient(135deg, #b45309 0%, #f59e0b 100%);
@@ -231,9 +225,9 @@ export default function HomePage() {
                         <div className="order-2 lg:order-1">
                             <FadeIn>
                                 <div className="inline-block mb-6 sm:mb-8">
-                                    <div className="flex items-center gap-2 bg-amber-50 border border-amber-100 px-4 py-1.5 sm:px-5 sm:py-2 rounded-full">
-                                        <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-amber-500 animate-pulse" />
-                                        <span className="text-[10px] sm:text-xs font-bold tracking-widest uppercase text-amber-800">Global IT Consultancy</span>
+                                    <div className="flex items-center gap-2 bg-amber-50 border border-amber-200 px-5 py-2.5 sm:px-6 sm:py-3 rounded-full">
+                                        <div className="w-2 h-2 sm:w-2.5 sm:h-2.5 rounded-full bg-amber-500 animate-pulse shadow-lg shadow-amber-500/50" />
+                                        <span className="text-xs sm:text-sm font-bold tracking-widest uppercase text-amber-800">Global IT Consultancy</span>
                                     </div>
                                 </div>
                             </FadeIn>
@@ -261,9 +255,10 @@ export default function HomePage() {
                         </div>
                         <div className="order-1 lg:order-2 relative h-[300px] sm:h-[400px] md:h-[500px] lg:h-[650px]">
                             <FadeIn delay={300} className="h-full w-full">
-                                <div className="relative h-full w-full rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl shadow-stone-400/20 border-4 sm:border-8 border-white">
-                                    <div className="absolute inset-0 bg-amber-900/10 mix-blend-overlay z-10" />
+                                <div className="relative h-full w-full rounded-2xl sm:rounded-3xl overflow-hidden bg-white border border-stone-200 shadow-2xl">
+                                    <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 via-transparent to-orange-500/10 z-10" />
                                     <img src={HERO_BG} alt="Tech Architecture" className="w-full h-full object-cover scale-105 hover:scale-100 transition-transform duration-[1.5s]" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent z-10" />
                                 </div>
                             </FadeIn>
                         </div>
@@ -271,13 +266,15 @@ export default function HomePage() {
                 </section>
 
                 {/* --- STATS SECTION --- */}
-                <section className="py-12 sm:py-16 bg-white/50 border-y border-stone-200 mt-8 sm:mt-12">
+                <section className="py-12 sm:py-16 bg-stone-50 border-y border-stone-200 mt-8 sm:mt-12">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6">
                         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 md:gap-12">
                             {stats.map((stat, i) => (
                                 <FadeIn key={i} delay={i * 100} className="text-center md:text-left">
-                                    <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-stone-800 mb-2">{stat.number}</div>
-                                    <div className="text-[10px] sm:text-xs text-amber-600 font-bold uppercase tracking-widest">{stat.label}</div>
+                                    <div className="bg-white border border-stone-200 p-4 sm:p-6 rounded-xl sm:rounded-2xl hover:scale-105 hover:shadow-lg transition-all duration-300">
+                                        <div className="text-3xl sm:text-4xl md:text-5xl font-bold text-stone-800 mb-2">{stat.number}</div>
+                                        <div className="text-[10px] sm:text-xs text-amber-600 font-bold uppercase tracking-widest">{stat.label}</div>
+                                    </div>
                                 </FadeIn>
                             ))}
                         </div>
@@ -288,8 +285,8 @@ export default function HomePage() {
                 <section className="py-16 sm:py-20 md:py-24 lg:py-32 relative">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6">
                         <FadeIn>
-                            <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 sm:mb-16 md:mb-20 gap-4">
-                                <div className="max-w-2xl">
+                            <div className="flex flex-col items-center text-center mb-12 sm:mb-16 md:mb-20 gap-4">
+                                <div className="max-w-3xl">
                                     <p className="text-amber-600 font-bold tracking-widest uppercase text-xs sm:text-sm mb-2 sm:mb-3">Our Expertise</p>
                                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-stone-900 mb-4 sm:mb-6">High-Impact Technology Solutions</h2>
                                 </div>
@@ -299,32 +296,38 @@ export default function HomePage() {
                             </div>
                         </FadeIn>
 
-                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-                            {coreServices.map((service, i) => (
-                                <FadeIn key={i} delay={i * 100}>
-                                    <div className={`glass-card p-6 sm:p-7 md:p-8 rounded-xl sm:rounded-2xl h-full group flex flex-col border ${service.border} hover:border-amber-300 transition-all`}>
-                                        <div className={`w-12 h-12 sm:w-13 sm:h-13 md:w-14 md:h-14 rounded-xl sm:rounded-2xl ${service.bg} flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300 shadow-sm`}>
-                                            <service.icon className={`w-6 h-6 sm:w-7 sm:h-7 ${service.accent}`} />
-                                        </div>
-                                        <h3 className="text-lg sm:text-xl font-bold text-stone-900 mb-3 sm:mb-4">{service.title}</h3>
-                                        <p className="text-stone-500 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 flex-grow">{service.description}</p>
-                                        <div className="pt-4 sm:pt-6 border-t border-stone-100 flex justify-between items-center">
-                                            <span className="text-[10px] sm:text-xs font-bold text-stone-400 uppercase tracking-wider group-hover:text-amber-600 transition-colors">Learn More</span>
-                                            <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 text-stone-300 group-hover:text-amber-600 group-hover:translate-x-2 transition-all" />
-                                        </div>
-                                    </div>
-                                </FadeIn>
-                            ))}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
+                            {coreServices.map((service, i) => {
+                                return (
+                                    <FadeIn key={i} delay={i * 100}>
+                                        <Link href={service.href || '/services'}>
+                                            <div className={`bg-white border ${service.border} p-6 sm:p-7 md:p-8 rounded-xl sm:rounded-2xl h-full group flex flex-col hover:border-amber-300 hover:shadow-lg transition-all cursor-pointer`}>
+                                                <div className={`w-12 h-12 sm:w-13 sm:h-13 md:w-14 md:h-14 rounded-xl sm:rounded-2xl ${service.bg} flex items-center justify-center mb-4 sm:mb-6 group-hover:scale-110 transition-transform duration-300 shadow-sm`}>
+                                                    <service.icon className={`w-6 h-6 sm:w-7 sm:h-7 ${service.accent}`} />
+                                                </div>
+                                                <h3 className="text-lg sm:text-xl font-bold text-stone-900 mb-3 sm:mb-4">{service.title}</h3>
+                                                <p className="text-stone-500 text-xs sm:text-sm leading-relaxed mb-4 sm:mb-6 flex-grow">{service.description}</p>
+                                                <div className="pt-4 sm:pt-6 border-t border-stone-100 mt-auto">
+                                                    <div className="inline-flex items-center gap-2 px-4 py-2.5 bg-stone-900 text-white rounded-full font-semibold text-xs sm:text-sm hover:bg-amber-600 transition-all duration-300 group-hover:scale-105 group-hover:shadow-lg">
+                                                        <span>Learn More</span>
+                                                        <ArrowRight className="w-3.5 h-3.5 sm:w-4 sm:h-4 group-hover:translate-x-1 transition-transform" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    </FadeIn>
+                                );
+                            })}
                         </div>
                     </div>
                 </section>
 
                 {/* --- ABOUT SPLIT SECTION --- */}
-                <section className="py-16 sm:py-20 md:py-24 lg:py-32 relative overflow-hidden bg-[#F5F5F4]">
+                <section className="py-16 sm:py-20 md:py-24 lg:py-32 relative overflow-hidden bg-stone-50">
                     <div className="max-w-7xl mx-auto px-4 sm:px-6">
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 sm:gap-16 lg:gap-20 items-center">
                             <FadeIn>
-                                <div className="bg-white p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-[2.5rem] shadow-xl shadow-stone-200 relative border border-stone-100">
+                                <div className="bg-white border border-stone-200 p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-[2.5rem] shadow-xl relative">
                                     <Globe className="w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 text-stone-900 absolute top-0 right-0 p-4 sm:p-6 md:p-8 opacity-10" />
                                     <p className="text-amber-600 font-bold tracking-widest uppercase text-[10px] sm:text-xs mb-3 sm:mb-4">Why PravonixTech</p>
                                     <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-stone-900 mb-4 sm:mb-6 leading-tight">
@@ -345,9 +348,10 @@ export default function HomePage() {
                                 </div>
                             </FadeIn>
                             <FadeIn delay={200}>
-                                <div className="relative rounded-2xl sm:rounded-[2.5rem] overflow-hidden shadow-2xl border-4 sm:border-8 border-white h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
-                                    <div className="absolute inset-0 bg-amber-900/20 mix-blend-overlay z-10" />
+                                <div className="relative rounded-2xl sm:rounded-[2.5rem] overflow-hidden bg-white border border-stone-200 shadow-2xl h-[300px] sm:h-[400px] md:h-[500px] lg:h-[600px]">
+                                    <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 via-transparent to-orange-500/10 z-10" />
                                     <img src={SERVICES_BG} alt="Our Team" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" />
+                                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent z-10" />
                                 </div>
                             </FadeIn>
                         </div>
@@ -370,14 +374,14 @@ export default function HomePage() {
                         <div className="grid grid-cols-1 gap-4 sm:gap-6">
                             {collaborationSteps.map((item, i) => (
                                 <FadeIn key={i} delay={i * 100}>
-                                    <div className="group flex flex-col md:flex-row items-center gap-6 sm:gap-8 bg-white p-6 sm:p-7 md:p-8 rounded-xl sm:rounded-2xl shadow-sm border border-stone-100 hover:shadow-xl hover:border-amber-200 transition-all duration-300 relative overflow-hidden">
+                                    <div className="group flex flex-col md:flex-row items-center gap-6 sm:gap-8 bg-white border border-stone-200 p-6 sm:p-7 md:p-8 rounded-xl sm:rounded-2xl hover:border-amber-300 hover:shadow-lg transition-all duration-300 relative overflow-hidden">
                                         <div className="absolute top-0 right-0 w-24 h-24 sm:w-32 sm:h-32 bg-amber-50 rounded-bl-[100%] -mr-12 -mt-12 sm:-mr-16 sm:-mt-16 transition-all group-hover:scale-150 group-hover:bg-amber-100" />
-                                        <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-xl sm:rounded-2xl bg-stone-50 flex-shrink-0 flex items-center justify-center border border-stone-100 group-hover:bg-white z-10">
+                                        <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-xl sm:rounded-2xl bg-stone-50 border border-stone-200 flex-shrink-0 flex items-center justify-center group-hover:border-amber-300 z-10">
                                             <item.icon className="w-8 h-8 sm:w-10 sm:h-10 text-stone-400 group-hover:text-amber-600 transition-colors" />
                                         </div>
                                         <div className="flex-grow text-center md:text-left z-10">
                                             <div className="flex items-center justify-center md:justify-start gap-3 sm:gap-4 mb-2 sm:mb-3">
-                                                <span className="text-xs sm:text-sm font-black text-amber-600 bg-amber-50 px-2 sm:px-3 py-1 rounded-full">{item.step}</span>
+                                                <span className="text-xs sm:text-sm font-black text-amber-600 bg-amber-50 border border-amber-200 px-2 sm:px-3 py-1 rounded-full">{item.step}</span>
                                                 <h3 className="text-xl sm:text-2xl font-bold text-stone-900">{item.title}</h3>
                                             </div>
                                             <p className="text-stone-500 text-base sm:text-lg leading-relaxed">{item.description}</p>
@@ -403,8 +407,8 @@ export default function HomePage() {
                         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10">
                             {guarantees.map((item, i) => (
                                 <FadeIn key={i} delay={i * 150}>
-                                    <div className="bg-stone-800/50 p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-[2.5rem] hover:bg-stone-800 transition-colors border border-stone-700 hover:border-amber-500/30 text-center">
-                                        <div className="w-14 h-14 sm:w-16 sm:h-16 mx-auto rounded-full bg-stone-900 flex items-center justify-center mb-4 sm:mb-6 border border-stone-700">
+                                    <div className="bg-stone-800 border border-stone-700 p-6 sm:p-8 md:p-10 rounded-2xl sm:rounded-[2.5rem] hover:border-amber-500 transition-all text-center">
+                                        <div className="w-14 h-14 sm:w-16 sm:h-16 mx-auto rounded-full bg-stone-700 border border-stone-600 flex items-center justify-center mb-4 sm:mb-6">
                                             <item.icon className="w-7 h-7 sm:w-8 sm:h-8 text-amber-500" />
                                         </div>
                                         <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 text-white">{item.title}</h3>
@@ -424,7 +428,7 @@ export default function HomePage() {
                     <div className="absolute inset-0 bg-gradient-to-b from-[#FDFCF8] via-[#FDFCF8]/90 to-[#FDFCF8]" />
                     <div className="relative z-10 max-w-4xl mx-auto text-center px-4 sm:px-6">
                         <FadeIn>
-                            <div className="bg-white p-3 sm:p-4 rounded-full w-fit mx-auto mb-6 sm:mb-8 shadow-xl shadow-amber-100">
+                            <div className="bg-amber-50 border border-amber-200 p-3 sm:p-4 rounded-full w-fit mx-auto mb-6 sm:mb-8 shadow-xl">
                                 <Rocket className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-amber-600" />
                             </div>
                             <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-stone-900 mb-6 sm:mb-8 leading-tight px-2">
@@ -438,7 +442,7 @@ export default function HomePage() {
                                 <Link href="/contact" className="inline-flex items-center justify-center bg-stone-900 text-white font-bold px-8 py-3 sm:px-10 sm:py-4 md:px-12 md:py-5 rounded-full text-base sm:text-lg md:text-xl hover:bg-amber-600 transition-all duration-300 shadow-2xl">
                                     Start Now <ArrowRight className="ml-2 sm:ml-3 w-4 h-4 sm:w-5 sm:h-5" />
                                 </Link>
-                                <Link href="/portfolio" className="inline-flex items-center justify-center bg-white text-stone-900 font-bold px-8 py-3 sm:px-10 sm:py-4 md:px-12 md:py-5 rounded-full text-base sm:text-lg md:text-xl border border-stone-200 hover:bg-stone-50 transition-all shadow-sm">
+                                <Link href="/portfolio" className="inline-flex items-center justify-center bg-white border border-stone-200 text-stone-900 font-bold px-8 py-3 sm:px-10 sm:py-4 md:px-12 md:py-5 rounded-full text-base sm:text-lg md:text-xl hover:border-amber-300 hover:bg-amber-50 transition-all shadow-lg">
                                     View Work
                                 </Link>
                             </div>
@@ -450,5 +454,19 @@ export default function HomePage() {
             {/* Added Footer Here */}
             <Footer />
         </div>
+
+        {/* WhatsApp Floating Button - Outside main div to avoid overflow issues */}
+        <Link
+            href="https://wa.me/7248780652"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="fixed bottom-6 right-6 z-[9999] w-16 h-16 bg-[#25D366] hover:bg-[#20BA5A] text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300"
+            aria-label="Contact us on WhatsApp"
+        >
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" className="w-8 h-8">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+            </svg>
+        </Link>
+        </>
     );
 }

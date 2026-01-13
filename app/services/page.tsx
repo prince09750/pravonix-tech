@@ -32,6 +32,7 @@ import {
     Laptop,
     Handshake
 } from 'lucide-react';
+import Footer from "../components/footer";
 
 // Premium Background Images
 const HERO_BG = "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1920&q=80";
@@ -82,52 +83,112 @@ const FadeIn = ({ children, delay = 0, className = '' }: { children: React.React
 
 const mainServices = [
     {
-        title: 'Web Application Development',
-        description: 'Custom web applications built with cutting-edge technologies for maximum performance and scalability.',
-        icon: Code,
+        title: 'Career Counselling',
+        description: 'We encourage you to take full advantage of the services we provide to support your career development process.',
+        icon: Users,
         color: 'from-amber-500 to-orange-500',
-        features: ['React & Next.js', 'Real-time Features', 'Progressive Web Apps', 'API Integration'],
-        image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&q=80'
+        features: ['Career Guidance', 'Skill Development', 'Job Placement Support', 'Training Programs'],
+        image: 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&q=80',
+        href: '/about/career'
     },
     {
-        title: 'Cloud Architecture & DevOps',
-        description: 'Scalable cloud infrastructure with automated deployment pipelines and monitoring.',
-        icon: Cloud,
-        color: 'from-orange-500 to-amber-500',
-        features: ['AWS/Azure/GCP', 'Docker & Kubernetes', 'CI/CD Pipelines', 'Auto-scaling'],
-        image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&q=80'
-    },
-    {
-        title: 'Mobile App Development',
-        description: 'Native and cross-platform mobile applications that deliver exceptional user experiences.',
+        title: 'App Development',
+        description: 'Need custom app development services? We can help you to take advantage of the rapidly growing segment of mobile application development.',
         icon: Smartphone,
-        color: 'from-yellow-500 to-amber-500',
+        color: 'from-blue-500 to-cyan-500',
         features: ['iOS & Android', 'React Native', 'Flutter', 'App Store Publishing'],
-        image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80'
+        image: 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=800&q=80',
+        href: '/services/app-development'
     },
     {
-        title: 'E-Commerce Solutions',
-        description: 'Full-featured online stores with secure payment processing and inventory management.',
-        icon: ShoppingCart,
-        color: 'from-amber-600 to-orange-600',
-        features: ['Custom Storefronts', 'Payment Gateways', 'Inventory Systems', 'Analytics'],
-        image: 'https://images.unsplash.com/photo-1557821552-17105176677c?w=800&q=80'
+        title: 'Custom Development',
+        description: 'Don\'t let your website be just another URL on the web! We never use a pre-designed template for your website. All design layouts are developed from ground up.',
+        icon: Code,
+        color: 'from-purple-500 to-pink-500',
+        features: ['Custom Web Development', 'Unique Design', 'Scalable Solutions', 'API Integration'],
+        image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=800&q=80',
+        href: '/services/custom-development'
     },
     {
-        title: 'AI & Machine Learning',
-        description: 'Intelligent automation and predictive analytics powered by advanced AI algorithms.',
+        title: 'IT Team for Entrepreneurship',
+        description: 'Entrepreneurship is exciting and challenging, yet risky. The PravonixTech Team. It certainly helps to have strong technology skills and expertise in key areas.',
+        icon: Rocket,
+        color: 'from-green-500 to-emerald-500',
+        features: ['Technical Expertise', 'Business Solutions', 'Startup Support', 'Technology Consulting'],
+        image: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=800&q=80',
+        href: '/services/it-entrepreneurship'
+    },
+    {
+        title: 'ERPs',
+        description: 'We help you to manage your business activities by integrating your back and front office applications.',
+        icon: Database,
+        color: 'from-red-500 to-orange-500',
+        features: ['Business Process Integration', 'Data Management', 'System Integration', 'Workflow Automation'],
+        image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80',
+        href: '/services/erps'
+    },
+    {
+        title: 'Website Designing',
+        description: 'In this digital world no matter how small your business, whether you have local business or profession, a website can make your business to the highest peak.',
+        icon: Layout,
+        color: 'from-indigo-500 to-purple-500',
+        features: ['Custom Web Design', 'Responsive Design', 'UI/UX Design', 'Brand Identity'],
+        image: 'https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?w=800&q=80',
+        href: '/services/website-designing'
+    },
+    {
+        title: 'Digital Marketing',
+        description: 'Nowadays digital marketing is one of the popular ways to boost or promote brands & products through the internet and other digital channels.',
+        icon: TrendingUp,
+        color: 'from-pink-500 to-rose-500',
+        features: ['Online Advertising', 'Content Marketing', 'Email Marketing', 'Analytics & Reporting'],
+        image: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80',
+        href: '/services/digital-marketing'
+    },
+    {
+        title: 'Social Media Marketing',
+        description: 'More than 3 billion people are connected through social platforms so it is important to reach out to our consumers who are on social platforms.',
+        icon: Users,
+        color: 'from-cyan-500 to-blue-500',
+        features: ['Social Media Strategy', 'Content Creation', 'Community Management', 'Social Advertising'],
+        image: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=800&q=80',
+        href: '/services/social-media-marketing'
+    },
+    {
+        title: 'SEO & Google Ads',
+        description: 'SEO(Search Engine Optimization) is one of the important factors in your business website. SEO will help you to reach to your targeted customers.',
+        icon: Zap,
+        color: 'from-yellow-500 to-amber-500',
+        features: ['Search Engine Optimization', 'Google Ads Management', 'Keyword Research', 'Performance Tracking'],
+        image: 'https://images.unsplash.com/photo-1432888622747-4eb9a8f2c92c?w=800&q=80',
+        href: '/services/seo-google-ads'
+    },
+    {
+        title: 'Political Campaign',
+        description: 'Our political campaign management services include development of political campaign strategies, powerful political campaign slogans and winning ideas.',
+        icon: Award,
+        color: 'from-orange-500 to-red-500',
+        features: ['Campaign Strategy', 'Digital Campaign', 'Social Media Campaign', 'Voter Engagement'],
+        image: 'https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?w=800&q=80',
+        href: '/services/political-campaign'
+    },
+    {
+        title: '3D Animations',
+        description: 'Our 3D animation services bring imagination to life. From conceptualization to execution, we craft stunning visuals that captivate audiences.',
+        icon: Sparkles,
+        color: 'from-violet-500 to-purple-500',
+        features: ['3D Modeling', 'Character Animation', 'Product Visualization', 'Architectural Rendering'],
+        image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?w=800&q=80',
+        href: '/services/3d-videos'
+    },
+    {
+        title: 'AI/ML',
+        description: 'We craft intelligent systems that adapt, learn, and evolve. Harnessing the power of Natural Language Processing (NLP) for deeper understanding.',
         icon: Bot,
-        color: 'from-orange-600 to-amber-600',
-        features: ['NLP & ChatBots', 'Computer Vision', 'Predictive Models', 'GenAI Integration'],
-        image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80'
-    },
-    {
-        title: 'UI/UX Design',
-        description: 'Beautiful, intuitive interfaces designed with user psychology and modern aesthetics.',
-        icon: Palette,
-        color: 'from-amber-500 to-yellow-500',
-        features: ['User Research', 'Wireframing', 'Prototyping', 'Design Systems'],
-        image: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&q=80'
+        color: 'from-teal-500 to-cyan-500',
+        features: ['Machine Learning', 'Natural Language Processing', 'Computer Vision', 'Predictive Analytics'],
+        image: 'https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80',
+        href: '/services/ai-ml'
     },
 ];
 
@@ -219,14 +280,7 @@ const whyChooseUs = [
 ];
 
 export default function ServicesPage() {
-    const [offsetY, setOffsetY] = useState(0);
     const [activeService, setActiveService] = useState(0);
-
-    useEffect(() => {
-        const handleScroll = () => setOffsetY(window.scrollY);
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
 
     return (
         <div className="min-h-screen text-stone-800 overflow-hidden font-sans selection:bg-amber-200 selection:text-amber-900">
@@ -265,7 +319,6 @@ export default function ServicesPage() {
                             backgroundImage: `url(${HERO_BG})`,
                             backgroundSize: 'cover',
                             backgroundPosition: 'center',
-                            transform: `translateY(${offsetY * 0.5}px) scale(1.1)`,
                         }}
                     />
 
@@ -307,7 +360,6 @@ export default function ServicesPage() {
                             backgroundImage: `url(${SERVICES_BG})`,
                             backgroundSize: 'cover',
                             backgroundPosition: 'center',
-                            backgroundAttachment: 'fixed'
                         }}
                     />
 
@@ -327,10 +379,11 @@ export default function ServicesPage() {
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 lg:gap-10">
                             {mainServices.map((service, i) => (
                                 <FadeIn key={i} delay={i * 100}>
-                                    <div 
-                                        className="group glass-card rounded-2xl sm:rounded-3xl overflow-hidden hover:scale-[1.02] transition-all duration-500"
-                                        onMouseEnter={() => setActiveService(i)}
-                                    >
+                                    <Link href={service.href || '#'}>
+                                        <div 
+                                            className="group glass-card rounded-2xl sm:rounded-3xl overflow-hidden hover:scale-[1.02] transition-all duration-500 cursor-pointer"
+                                            onMouseEnter={() => setActiveService(i)}
+                                        >
                                         {/* Service Image */}
                                         <div className="relative h-48 sm:h-56 md:h-64 overflow-hidden">
                                             <div 
@@ -365,14 +418,15 @@ export default function ServicesPage() {
                                             </div>
 
                                             <Link 
-                                                href="/contact"
-                                                className="group/btn inline-flex items-center text-amber-600 font-bold hover:text-orange-600 transition-colors text-sm sm:text-base"
+                                                href={service.href || "/contact"}
+                                                className="group/btn inline-flex items-center justify-center gap-2 px-6 py-3 bg-stone-900 text-white rounded-full font-semibold text-sm sm:text-base hover:bg-amber-600 transition-all duration-300 hover:scale-105 hover:shadow-lg"
                                             >
-                                                Get Started 
-                                                <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover/btn:translate-x-2 transition-transform" />
+                                                <span>{service.href ? 'Learn More' : 'Get Started'}</span>
+                                                <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5 group-hover/btn:translate-x-1 transition-transform" />
                                             </Link>
                                         </div>
                                     </div>
+                                    </Link>
                                 </FadeIn>
                             ))}
                         </div>
@@ -429,7 +483,6 @@ export default function ServicesPage() {
                             backgroundImage: `url(${TECH_BG})`,
                             backgroundSize: 'cover',
                             backgroundPosition: 'center',
-                            backgroundAttachment: 'fixed'
                         }}
                     />
 
@@ -550,45 +603,7 @@ export default function ServicesPage() {
                 </section>
             </main>
 
-            {/* Footer */}
-            <footer className="relative bg-[#1C1917] text-stone-400 pt-12 sm:pt-16 md:pt-20 pb-8 sm:pb-10 border-t border-stone-800 font-sans">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 md:gap-12 mb-12 sm:mb-16 border-b border-stone-800 pb-12 sm:pb-16">
-                        <div className="space-y-4 sm:space-y-6">
-                            <span className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
-                                <Code className="text-amber-600 w-5 h-5 sm:w-6 sm:h-6" /> Pravonix<span className="text-amber-500">Tech</span>
-                            </span>
-                            <p className="text-stone-500 leading-relaxed text-xs sm:text-sm">Premier software consultancy delivering enterprise-grade digital transformation.</p>
-                        </div>
-                        <div>
-                            <h4 className="text-white font-bold mb-4 sm:mb-6 text-base sm:text-lg">Services</h4>
-                            <ul className="space-y-3 sm:space-y-4 text-xs sm:text-sm font-medium">
-                                <li><Link href="/services" className="hover:text-amber-500 transition-colors">Custom Development</Link></li>
-                                <li><Link href="/services" className="hover:text-amber-500 transition-colors">Cloud Solutions</Link></li>
-                                <li><Link href="/services" className="hover:text-amber-500 transition-colors">AI Integration</Link></li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 className="text-white font-bold mb-4 sm:mb-6 text-base sm:text-lg">Company</h4>
-                            <ul className="space-y-3 sm:space-y-4 text-xs sm:text-sm font-medium">
-                                <li><Link href="/about" className="hover:text-amber-500 transition-colors">About Us</Link></li>
-                                <li><Link href="/contact" className="hover:text-amber-500 transition-colors">Contact</Link></li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 className="text-white font-bold mb-4 sm:mb-6 text-base sm:text-lg">Contact</h4>
-                            <div className="space-y-3 sm:space-y-4 text-xs sm:text-sm">
-                                <p className="text-stone-500">Cyber Hub, Gurugram, India</p>
-                                <a href="mailto:hello@pravonixtech.com" className="hover:text-amber-500 transition-colors break-all">hello@pravonixtech.com</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="flex flex-col md:flex-row justify-between items-center text-xs sm:text-sm text-stone-600 gap-3 sm:gap-4">
-                        <p>© {new Date().getFullYear()} PravonixTech Inc. All rights reserved.</p>
-                        <div className="flex gap-4 sm:gap-6"><a href="#" className="hover:text-amber-500">Terms</a><a href="#" className="hover:text-amber-500">Privacy</a></div>
-                    </div>
-                </div>
-            </footer>
+            <Footer />
         </div>
     );
 }

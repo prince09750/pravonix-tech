@@ -14,6 +14,7 @@ import {
     AlertTriangle
 } from 'lucide-react';
 import { useState, useEffect, useRef } from 'react';
+import Footer from '../components/footer';
 
 // Ambient Background Component
 const AmbientBackground = () => (
@@ -456,45 +457,7 @@ export default function ContactPage() {
                 
             </main>
             
-            {/* Footer */}
-            <footer className="relative bg-[#1C1917] text-stone-400 pt-20 pb-10 border-t border-stone-800 font-sans">
-                <div className="max-w-7xl mx-auto px-6">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 border-b border-stone-800 pb-16">
-                        <div className="space-y-6">
-                            <span className="text-2xl font-bold text-white flex items-center gap-2">
-                                <MessageSquareText className="text-amber-600" /> Pravonix<span className="text-amber-500">Tech</span>
-                            </span>
-                            <p className="text-stone-500 leading-relaxed text-sm">Premier software consultancy delivering enterprise-grade digital transformation.</p>
-                        </div>
-                        <div>
-                            <h4 className="text-white font-bold mb-6 text-lg">Services</h4>
-                            <ul className="space-y-4 text-sm font-medium">
-                                <li><Link href="/services" className="hover:text-amber-500 transition-colors">Custom Development</Link></li>
-                                <li><Link href="/services" className="hover:text-amber-500 transition-colors">Cloud Solutions</Link></li>
-                                <li><Link href="/services" className="hover:text-amber-500 transition-colors">AI Integration</Link></li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 className="text-white font-bold mb-6 text-lg">Company</h4>
-                            <ul className="space-y-4 text-sm font-medium">
-                                <li><Link href="/about" className="hover:text-amber-500 transition-colors">About Us</Link></li>
-                                <li><Link href="/contact" className="hover:text-amber-500 transition-colors">Contact</Link></li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 className="text-white font-bold mb-6 text-lg">Contact</h4>
-                            <div className="space-y-4 text-sm">
-                                <p className="text-stone-500">Cyber Hub, Gurugram, India</p>
-                                <a href="mailto:hello@pravonixtech.com" className="hover:text-amber-500 transition-colors">hello@pravonixtech.com</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="flex flex-col md:flex-row justify-between items-center text-sm text-stone-600 gap-4">
-                        <p>© {new Date().getFullYear()} PravonixTech Inc. All rights reserved.</p>
-                        <div className="flex gap-6"><a href="#" className="hover:text-amber-500">Terms</a><a href="#" className="hover:text-amber-500">Privacy</a></div>
-                    </div>
-                </div>
-            </footer>
+            <Footer />
 
             {/* === Contact Modal Component === */}
             <ContactModal

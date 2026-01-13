@@ -3,6 +3,13 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navbar from "./components/navbar";
 
+export const metadata: Metadata = {
+  title: "PravonixTech",
+  description: "Premier software consultancy delivering enterprise-grade digital transformation.",
+  icons: {
+    icon: "/favicon.svg",
+  },
+};
 
 export default function RootLayout({
   children,

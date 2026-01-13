@@ -27,6 +27,8 @@ const VALUES_BG = "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?
 const MILESTONE_BG = "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1920&q=80";
 const TECH_BG = "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=1920&q=80";
 
+import Footer from "../components/footer";
+
 // Ambient Background Component
 const AmbientBackground = () => (
     <div className="fixed inset-0 overflow-hidden pointer-events-none z-0">
@@ -97,13 +99,6 @@ const stats = [
 ];
 
 export default function AboutPage() {
-    const [offsetY, setOffsetY] = useState(0);
-
-    useEffect(() => {
-        const handleScroll = () => setOffsetY(window.scrollY);
-        window.addEventListener('scroll', handleScroll);
-        return () => window.removeEventListener('scroll', handleScroll);
-    }, []);
 
     return (
         <div className="min-h-screen text-stone-800 overflow-hidden font-sans selection:bg-amber-200 selection:text-amber-900">
@@ -142,7 +137,6 @@ export default function AboutPage() {
                             backgroundImage: `url(${HERO_BG})`,
                             backgroundSize: 'cover',
                             backgroundPosition: 'center',
-                            transform: `translateY(${offsetY * 0.5}px) scale(1.1)`,
                         }}
                     />
                     
@@ -211,7 +205,6 @@ export default function AboutPage() {
                             backgroundImage: `url(${VALUES_BG})`,
                             backgroundSize: 'cover',
                             backgroundPosition: 'center',
-                            backgroundAttachment: 'fixed'
                         }}
                     />
 
@@ -286,7 +279,6 @@ export default function AboutPage() {
                             backgroundImage: `url(${MILESTONE_BG})`,
                             backgroundSize: 'cover',
                             backgroundPosition: 'center',
-                            backgroundAttachment: 'fixed'
                         }}
                     />
 
@@ -402,45 +394,7 @@ export default function AboutPage() {
                 </section>
             </main>
 
-            {/* Footer */}
-            <footer className="relative bg-[#1C1917] text-stone-400 pt-12 sm:pt-16 md:pt-20 pb-8 sm:pb-10 border-t border-stone-800 font-sans">
-                <div className="max-w-7xl mx-auto px-4 sm:px-6">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 sm:gap-10 md:gap-12 mb-12 sm:mb-16 border-b border-stone-800 pb-12 sm:pb-16">
-                        <div className="space-y-4 sm:space-y-6">
-                            <span className="text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
-                                <Code className="text-amber-600 w-5 h-5 sm:w-6 sm:h-6" /> Pravonix<span className="text-amber-500">Tech</span>
-                            </span>
-                            <p className="text-stone-500 leading-relaxed text-xs sm:text-sm">Premier software consultancy delivering enterprise-grade digital transformation.</p>
-                        </div>
-                        <div>
-                            <h4 className="text-white font-bold mb-4 sm:mb-6 text-base sm:text-lg">Services</h4>
-                            <ul className="space-y-3 sm:space-y-4 text-xs sm:text-sm font-medium">
-                                <li><Link href="/services" className="hover:text-amber-500 transition-colors">Custom Development</Link></li>
-                                <li><Link href="/services" className="hover:text-amber-500 transition-colors">Cloud Solutions</Link></li>
-                                <li><Link href="/services" className="hover:text-amber-500 transition-colors">AI Integration</Link></li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 className="text-white font-bold mb-4 sm:mb-6 text-base sm:text-lg">Company</h4>
-                            <ul className="space-y-3 sm:space-y-4 text-xs sm:text-sm font-medium">
-                                <li><Link href="/about" className="hover:text-amber-500 transition-colors">About Us</Link></li>
-                                <li><Link href="/contact" className="hover:text-amber-500 transition-colors">Contact</Link></li>
-                            </ul>
-                        </div>
-                        <div>
-                            <h4 className="text-white font-bold mb-4 sm:mb-6 text-base sm:text-lg">Contact</h4>
-                            <div className="space-y-3 sm:space-y-4 text-xs sm:text-sm">
-                                <p className="text-stone-500">Cyber Hub, Gurugram, India</p>
-                                <a href="mailto:hello@pravonixtech.com" className="hover:text-amber-500 transition-colors break-all">hello@pravonixtech.com</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="flex flex-col md:flex-row justify-between items-center text-xs sm:text-sm text-stone-600 gap-3 sm:gap-4">
-                        <p>© {new Date().getFullYear()} PravonixTech Inc. All rights reserved.</p>
-                        <div className="flex gap-4 sm:gap-6"><a href="#" className="hover:text-amber-500">Terms</a><a href="#" className="hover:text-amber-500">Privacy</a></div>
-                    </div>
-                </div>
-            </footer>
+            <Footer />
         </div>
     );
 }

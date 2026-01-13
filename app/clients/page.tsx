@@ -2,19 +2,11 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { 
-    ArrowRight, 
-    Zap, 
-    ShieldCheck, 
-    BarChart2, 
-    Rocket,
-    Globe,
-    Quote,
-    Award,
-    Lightbulb,
-    Handshake,
-    CheckCircle
+    ArrowRight
 } from 'lucide-react';
+import Footer from '../components/footer';
 
 // --- Reusable Components ---
 const AmbientBackground = () => (
@@ -52,65 +44,71 @@ const FadeIn: React.FC<FadeInProps> = ({ children, delay = 0, className = '' }) 
     );
 };
 
-// --- Project Data (Updated & Expanded) ---
-const projects = [
-    {
-        name: "FinFlow Global",
-        industry: "Financial Analytics & Trading",
-        description: "Developed a secure, high-performance financial analytics dashboard with real-time data streaming and predictive modeling, enabling rapid, informed trading decisions.",
-        challenge: "Integrating disparate market data sources and ensuring sub-millisecond latency for high-frequency trading while meeting stringent regulatory compliance.",
-        solution: "Engineered a Next.js frontend with Rust-based backend microservices, leveraging WebSockets for real-time updates and AWS Fargate for scalable, compliant infrastructure.",
-        results: [
-            "99.99% Uptime for critical operations",
-            "30% faster data processing",
-            "Achieved full SOC 2 Type II compliance"
-        ],
-        testimonial: {
-            quote: "PravonixTech transformed our vision into a robust, secure, and incredibly fast trading platform. Their expertise in FinTech is unmatched.",
-            author: "Dr. Evelyn Reed",
-            title: "CTO, FinFlow Global"
-        },
-        icon: ShieldCheck,
-        image: 'https://images.unsplash.com/photo-1621932616428-c1f0b0949d0d?w=800&q=80', // Placeholder image for FinTech
-    },
-    {
-        name: "EcoCharge Network",
-        industry: "Green Energy & EV Charging",
-        description: "Created a nationwide smart EV charging network management system, including user-facing mobile apps and a robust operator dashboard for monitoring and maintenance.",
-        challenge: "Managing a distributed network of charging stations, dynamic pricing, and user authentication across various hardware types and locations.",
-        solution: "Implemented a cloud-native IoT platform on Google Cloud, developed cross-platform mobile apps with React Native, and integrated payment gateways for seamless transactions.",
-        results: [
-            "Expanded network to 500+ stations",
-            "Improved charging session success rate by 25%",
-            "Reduced operational costs by 15%"
-        ],
-        testimonial: {
-            quote: "Their team brought a fresh perspective to our sustainable energy goals, delivering a scalable and user-friendly solution that exceeded expectations.",
-            author: "Mr. Alok Sharma",
-            title: "CEO, EcoCharge Network"
-        },
-        icon: Zap,
-        image: 'https://images.unsplash.com/photo-1627993079089-a2a2c3d5e9b8?w=800&q=80', // Placeholder image for EV
-    },
-    {
-        name: "MediTrack AI",
-        industry: "Healthcare & AI Diagnostics",
-        description: "Designed an AI-powered diagnostic support system that assists radiologists in detecting anomalies with higher accuracy and reduced review times.",
-        challenge: "Developing a HIPAA-compliant system capable of processing vast amounts of medical imaging data and integrating AI models for real-time analysis.",
-        solution: "Built a secure, serverless backend for data processing with Python and TensorFlow, and a intuitive React interface for medical professionals, ensuring strict data privacy.",
-        results: [
-            "15% increase in diagnostic accuracy",
-            "Reduced image review time by 20%",
-            "Seamless integration with existing hospital systems"
-        ],
-        testimonial: {
-            quote: "MediTrack AI is a game-changer. PravonixTech's understanding of medical technology and AI ethics is truly commendable.",
-            author: "Dr. Sanjay Gupta",
-            title: "Chief Radiologist, St. Jude's Hospital"
-        },
-        icon: BarChart2,
-        image: 'https://images.unsplash.com/photo-1579684385153-f00e99f12b84?w=800&q=80', // Placeholder image for Medical AI
-    }
+// --- Client Card Component ---
+const ClientCard: React.FC<{ client: { name: string; image: string }; idx: number }> = ({ client, idx }) => {
+    const [imageError, setImageError] = useState(false);
+    
+    return (
+        <FadeIn delay={idx * 50}>
+            <div className="glass-card p-6 rounded-2xl text-center hover:shadow-xl hover:scale-105 transition-all duration-300 border border-stone-200/50 flex items-center justify-center min-h-[150px] bg-white">
+                <div className="relative w-full h-24 flex items-center justify-center">
+                    {!imageError ? (
+                        <Image 
+                            src={client.image}
+                            alt={client.name}
+                            width={200}
+                            height={80}
+                            className="object-contain max-w-full max-h-full"
+                            unoptimized
+                            onError={() => setImageError(true)}
+                        />
+                    ) : (
+                        <p className="text-sm font-semibold text-stone-900 px-2">{client.name}</p>
+                    )}
+                </div>
+            </div>
+        </FadeIn>
+    );
+};
+
+// --- Clients List with Images ---
+const clients = [
+    { name: "Sanskriti School", image: "https://cling-project.s3.ap-south-1.amazonaws.com/logos/1761818023383-logo.png" },
+    { name: "Seymour Management", image: "https://cling-project.s3.ap-south-1.amazonaws.com/logos/1761644602861-logo.png" },
+    { name: "Omsons India Handicraft", image: "https://cling-project.s3.ap-south-1.amazonaws.com/logos/1761644572462-logo.png" },
+    { name: "Kirana Quick Technologies Private Limited", image: "https://cling-project.s3.ap-south-1.amazonaws.com/logos/1761307901537-logo.png" },
+    { name: "SOLIDARITY ADVISORS PRIVATE LIMITED", image: "https://cling-project.s3.ap-south-1.amazonaws.com/logos/1761307195398-logo.png" },
+    { name: "CP67", image: "https://cling-project.s3.ap-south-1.amazonaws.com/logos/1761307073516-logo.png" },
+    { name: "Capital Curve", image: "https://cling-project.s3.ap-south-1.amazonaws.com/logos/1761306951257-logo.jpeg" },
+    { name: "FDX Group", image: "https://cling-project.s3.ap-south-1.amazonaws.com/logos/1761306794323-logo.png" },
+    { name: "Kalco", image: "https://cling-project.s3.ap-south-1.amazonaws.com/logos/1761307901537-logo.png" },
+    { name: "Bhojras", image: "https://cling-project.s3.ap-south-1.amazonaws.com/logos/bhojras-1760612419392.png" },
+    { name: "Wings Rehabilitation Center", image: "https://cling-project.s3.ap-south-1.amazonaws.com/logos/wings-rehabilitation-1760612418801.png" },
+    { name: "Airdrop JA", image: "https://cling-project.s3.ap-south-1.amazonaws.com/logos/airdrop-ja-1760612418354.webp" },
+    { name: "NK Architects", image: "https://cling-project.s3.ap-south-1.amazonaws.com/logos/nk-architects-1760612417999.jpeg" },
+    { name: "Vestiary", image: "https://cling-project.s3.ap-south-1.amazonaws.com/logos/vestiary-1760612417637.jpeg" },
+    { name: "Skuad", image: "https://cling-project.s3.ap-south-1.amazonaws.com/logos/skuad-1760612417294.jpeg" },
+    { name: "Piaah", image: "https://cling-project.s3.ap-south-1.amazonaws.com/logos/piaah-1760612416885.jpeg" },
+    { name: "Litmus Ink", image: "https://cling-project.s3.ap-south-1.amazonaws.com/logos/litmus-ink-1760612416485.jpeg" },
+    { name: "Forescribe", image: "https://cling-project.s3.ap-south-1.amazonaws.com/logos/forescribe-1760612416165.jpeg" },
+    { name: "Apptrove", image: "https://cling-project.s3.ap-south-1.amazonaws.com/logos/apptrove-1760612415831.jpeg" },
+    { name: "Spoteezy", image: "https://cling-project.s3.ap-south-1.amazonaws.com/logos/spoteezy-1760612415441.png" },
+    { name: "BeatRoute", image: "https://cling-project.s3.ap-south-1.amazonaws.com/logos/beatroute-1760612415117.png" },
+    { name: "Vibgyor Web", image: "https://cling-project.s3.ap-south-1.amazonaws.com/logos/vibgyor-web-1760612414613.png" },
+    { name: "Phonologix Therapy", image: "https://cling-project.s3.ap-south-1.amazonaws.com/logos/phonologix-therapy-1760612414290.png" },
+    { name: "Kite Digiceutix", image: "https://cling-project.s3.ap-south-1.amazonaws.com/logos/kite-digiceutix-1760612413861.png" },
+    { name: "Sterling Web", image: "https://cling-project.s3.ap-south-1.amazonaws.com/logos/sterling-web-1760612413404.png" },
+    { name: "E-Pay Later", image: "https://cling-project.s3.ap-south-1.amazonaws.com/logos/epay-later-1760612413032.png" },
+    { name: "Astro Reader", image: "https://cling-project.s3.ap-south-1.amazonaws.com/logos/astro-reader-1760612412547.jpeg" },
+    { name: "Sagitta", image: "https://cling-project.s3.ap-south-1.amazonaws.com/logos/sagitta-1760612411988.jpeg" },
+    { name: "Viral Hai", image: "https://cling-project.s3.ap-south-1.amazonaws.com/logos/viral-hai-1760612411500.jpeg" },
+    { name: "Matrix Solutions", image: "https://cling-project.s3.ap-south-1.amazonaws.com/logos/minten-1760612410778.png" },
+    { name: "Minten", image: "https://cling-project.s3.ap-south-1.amazonaws.com/logos/minten-1760612410778.png" },
+    { name: "Parashar", image: "https://cling-project.s3.ap-south-1.amazonaws.com/logos/parashar-1760612410064.png" },
+    { name: "Vakeel at Home", image: "https://cling-project.s3.ap-south-1.amazonaws.com/logos/vakeel-at-home-1760612409594.png" },
+    { name: "Papertio", image: "https://cling-project.s3.ap-south-1.amazonaws.com/logos/papertio-1760612409208.png" },
+    { name: "MatchMe Global", image: "https://cling-project.s3.ap-south-1.amazonaws.com/logos/matchme-1760612408758.jpeg" },
+    { name: "Mint HR", image: "https://cling-project.s3.ap-south-1.amazonaws.com/logos/minthr-1760612408304.png" }
 ];
 
 export default function ClientsPage() {
@@ -145,131 +143,22 @@ export default function ClientsPage() {
                 <section className="py-20 text-center relative">
                     <div className="max-w-4xl mx-auto px-6">
                         <FadeIn>
-                            <span className="text-amber-600 font-bold tracking-widest uppercase text-sm mb-4 inline-block">Our Journey with Innovation</span>
                             <h1 className="text-5xl md:text-7xl font-extrabold text-stone-900 mb-6 leading-tight">
-                                Igniting <span className="text-gradient">Success Stories</span> <br /> 
-                                Worldwide.
+                                Our <span className="text-gradient">Clients</span>
                             </h1>
-                            <p className="text-xl text-stone-600 max-w-3xl mx-auto">
-                                At PravonixTech, we don't just build; we partner with visionary clients to turn complex challenges into digital triumphs. Explore the impact we've made together.
+                            <p className="text-xl text-stone-600 max-w-3xl mx-auto leading-relaxed">
+                                When we say "Making your idea happen!" , we mean it. Same is shown by the list of our clients. We are helping every possible Entrepreneur, to build/innovate their ideas.
                             </p>
                         </FadeIn>
                     </div>
                 </section>
 
-                {/* Impact Metrics Section */}
-                <section className="py-20 bg-stone-900 text-white relative overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-br from-stone-900 to-amber-950 opacity-90 z-0" />
-                    <div className="max-w-7xl mx-auto px-6 relative z-10">
-                        <FadeIn>
-                            <h2 className="text-4xl md:text-5xl font-bold text-center mb-16">Our Global Impact in Numbers</h2>
-                        </FadeIn>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-                            {[
-                                { num: "10+", label: "Years of Excellence", icon: Award },
-                                { num: "350+", label: "Successful Projects", icon: Rocket },
-                                { num: "20+", label: "Countries Served", icon: Globe },
-                                { num: "95%", label: "Client Retention Rate", icon: CheckCircle }
-                            ].map((item, idx) => (
-                                <FadeIn key={idx} delay={idx * 150} className="text-center">
-                                    <div className="glass-card-dark p-8 rounded-3xl h-full flex flex-col items-center justify-center border-amber-800/20">
-                                        <item.icon className="w-12 h-12 text-amber-400 mb-6 glow-effect" />
-                                        <p className="text-5xl font-extrabold text-amber-500 mb-2">{item.num}</p>
-                                        <p className="text-xl text-stone-300 font-medium">{item.label}</p>
-                                    </div>
-                                </FadeIn>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-
-                {/* Individual Project Showcases */}
-                {projects.map((project, idx) => (
-                    <section key={idx} className="py-24 overflow-hidden">
-                        <div className={`max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center ${idx % 2 === 1 ? 'lg:flex-row-reverse' : ''}`}>
-                            {/* Project Image */}
-                            <FadeIn delay={100} className={idx % 2 === 1 ? 'order-2' : 'order-1'}>
-                                <div className="rounded-3xl overflow-hidden shadow-2xl hover:shadow-amber-500/20 transition-all duration-500 transform hover:scale-[1.01] group relative bg-stone-200">
-                                    <img 
-                                        src={project.image} 
-                                        alt={project.name} 
-                                        className="w-full h-[400px] md:h-[500px] lg:h-[600px] object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out" 
-                                        loading="lazy"
-                                        onError={(e) => {
-                                            console.error('Image failed to load:', project.image);
-                                            e.currentTarget.style.display = 'none';
-                                        }}
-                                        onLoad={() => console.log('Image loaded:', project.name)}
-                                    />
-                                </div>
-                            </FadeIn>
-
-                            {/* Project Details */}
-                            <FadeIn delay={200} className={idx % 2 === 1 ? 'order-1' : 'order-2'}>
-                                <div className="space-y-8">
-                                    <span className="text-sm font-bold text-amber-600 uppercase tracking-widest block">{project.industry}</span>
-                                    <h2 className="text-4xl md:text-5xl font-bold text-stone-900 leading-tight">{project.name}</h2>
-                                    <p className="text-lg text-stone-600 leading-relaxed">{project.description}</p>
-
-                                    {/* Challenge */}
-                                    <div>
-                                        <h3 className="text-xl font-semibold text-stone-800 mb-3 flex items-center gap-2"><Lightbulb className="w-6 h-6 text-amber-500" /> The Challenge</h3>
-                                        <p className="text-stone-700 border-l-4 border-amber-200 pl-4 py-1 italic">{project.challenge}</p>
-                                    </div>
-
-                                    {/* Solution */}
-                                    <div>
-                                        <h3 className="text-xl font-semibold text-stone-800 mb-3 flex items-center gap-2"><Handshake className="w-6 h-6 text-amber-500" /> Our Solution</h3>
-                                        <p className="text-stone-700 border-l-4 border-amber-200 pl-4 py-1 italic">{project.solution}</p>
-                                    </div>
-
-                                    {/* Results */}
-                                    <div>
-                                        <h3 className="text-xl font-semibold text-stone-800 mb-3 flex items-center gap-2"><BarChart2 className="w-6 h-6 text-amber-500" /> Key Results</h3>
-                                        <ul className="list-disc pl-5 space-y-2 text-stone-700">
-                                            {project.results.map((result, rIdx) => (
-                                                <li key={rIdx}>{result}</li>
-                                            ))}
-                                        </ul>
-                                    </div>
-
-                                    {/* Testimonial */}
-                                    <div className="glass-card p-6 rounded-2xl border-l-4 border-amber-500 shadow-lg mt-8">
-                                        <Quote className="w-8 h-8 text-amber-500 mb-4 opacity-70" />
-                                        <p className="text-lg italic text-stone-700 mb-4">"{project.testimonial.quote}"</p>
-                                        <p className="font-bold text-stone-900">{project.testimonial.author}</p>
-                                        <p className="text-sm text-stone-500">{project.testimonial.title}</p>
-                                    </div>
-
-                                    <Link href={`/case-studies/${project.name.toLowerCase().replace(/\s/g, '-')}`} className="inline-flex items-center gap-3 bg-stone-900 text-white font-bold px-8 py-4 rounded-full hover:bg-amber-600 transition-all active:scale-95 shadow-xl shadow-stone-900/20 mt-8">
-                                        View Full Case Study <ArrowRight className="w-5 h-5" />
-                                    </Link>
-                                </div>
-                            </FadeIn>
-                        </div>
-                    </section>
-                ))}
-
-                {/* Why Partner With Us Section */}
-                <section className="py-24 bg-gradient-to-br from-amber-50 to-white">
-                    <div className="max-w-7xl mx-auto px-6 text-center">
-                        <FadeIn>
-                            <h2 className="text-4xl md:text-5xl font-bold text-stone-900 mb-8">Why Our Clients Choose PravonixTech</h2>
-                            <p className="text-lg text-stone-600 max-w-3xl mx-auto mb-16">
-                                We believe in true partnership, combining technical prowess with a deep understanding of your business goals to deliver exceptional results.
-                            </p>
-                        </FadeIn>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                            {[
-                                { title: "Unmatched Expertise", description: "Our team consists of industry veterans and innovators, bringing a wealth of knowledge to every project.", icon: Lightbulb },
-                                { title: "Transparent Collaboration", description: "We keep you informed and involved at every stage, fostering trust and open communication.", icon: Handshake },
-                                { title: "Results-Driven Approach", description: "Your success is our priority. We focus on delivering measurable impact and long-term value.", icon: BarChart2 }
-                            ].map((feature, idx) => (
-                                <FadeIn key={idx} delay={idx * 150} className="glass-card p-8 rounded-3xl shadow-lg">
-                                    <feature.icon className="w-12 h-12 text-amber-500 mb-6 mx-auto" />
-                                    <h3 className="text-2xl font-bold text-stone-900 mb-4">{feature.title}</h3>
-                                    <p className="text-stone-600">{feature.description}</p>
-                                </FadeIn>
+                {/* Clients List Section */}
+                <section className="py-16 md:py-24 px-4 sm:px-6 lg:px-8">
+                    <div className="max-w-7xl mx-auto">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+                            {clients.map((client, idx) => (
+                                <ClientCard key={idx} client={client} idx={idx} />
                             ))}
                         </div>
                     </div>
@@ -293,6 +182,8 @@ export default function ClientsPage() {
                     </FadeIn>
                 </section>
             </main>
+
+            <Footer />
         </div>
     );
 }
