@@ -126,7 +126,7 @@ const ContactModal: React.FC<ModalProps> = ({ show, onClose, title, message, isS
 // --- Data Structure for Contact Info ---
 const contactInfo = [
     { icon: Mail, title: 'Email Address', details: 'hello@pravonixtech.com', link: 'mailto:hello@pravonixtech.com' },
-    { icon: Phone, title: 'Phone Number', details: '+91 7248 780652', link: 'tel:+919876543210' },
+    { icon: Phone, title: 'Phone Number', details: '+91 7248 780652', link: 'tel:+917248780652' },
     { icon: MapPin, title: 'Corporate Office', details: 'Cyber Hub, Gurugram, India', link: '#' },
 ];
 
