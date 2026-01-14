@@ -16,10 +16,10 @@ const headMembers = [
 
 const teamMembers = [
   {
-    name: "Aditi Gupta",
-    role: "Managing Director",
+    name: " nikolas sons",
+    role: "backend developer",
     image:
-      "https://media.licdn.com/dms/image/v2/D5603AQEddtucQObPWA/profile-displayphoto-shrink_800_800/B56ZXwDnxAGoAc-/0/1743489237726?e=1769644800&v=beta&t=dYYYZdjbzJBvtfY254Sh510BFi1SNrNyE-H3aitqhAk",
+      "https://img.freepik.com/free-photo/smiling-elegant-businessman_23-2147626595.jpg?semt=ais_hybrid&w=740&q=80",
   },
   {
     name: "Neha Verma",
